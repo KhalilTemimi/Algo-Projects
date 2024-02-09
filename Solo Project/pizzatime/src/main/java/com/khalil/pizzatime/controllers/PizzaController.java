@@ -108,7 +108,7 @@ public class PizzaController {
 	}
 	
 	@PostMapping("/pizzaRandom")
-	public String createRandomPizza(HttpSession session) {
+	public String createRandomPizza(HttpSession session,Model model,@Valid @ModelAttribute("pizza") Pizza randomPizza,BindingResult result) {
 
 		// Route Gard
 		Long userId = (Long) session.getAttribute("userId");
@@ -118,12 +118,26 @@ public class PizzaController {
 				Long UserId = (Long) session.getAttribute("userId");
 				User loggedInUser = userServ.findById(UserId);
 				
-				Random randomNum = new Random();
-				int randomId = randomNum.nextInt(7,10);
-				Long id = Long.valueOf(randomId);
-				Pizza randomPizza = pizzaServ.findPizza(id);
+				Random rand = new Random();
+				List<String> method = Arrays.asList("CarryOut","OnTable");
+				List<String> size = Arrays.asList("Small","Large","Medium");
+				List<String> crust = Arrays.asList("ThinCrust","HandToasted","StuffedCrust");
+				List<String> topping = Arrays.asList("Pepperoni","Onion","Cheese","Bacon","Olive","Mushroom");
+				
 				randomPizza.setUser(loggedInUser);
-				randomPizza.setBuyer(null);
+				int randomIndex1 = rand.nextInt(method.size());
+				randomPizza.setMethod(method.get(randomIndex1));
+				
+				int randomIndex2 = rand.nextInt(size.size());
+				randomPizza.setSize(size.get(randomIndex2));
+			
+				int randomIndex3 = rand.nextInt(crust.size());
+				randomPizza.setCrust(crust.get(randomIndex3));
+				
+				int randomIndex4 = rand.nextInt(topping.size());
+				randomPizza.setTopping(topping.get(randomIndex4));
+				
+				randomPizza.setQuantity(1);
 				
 				double price = 5;
 				if (randomPizza.getSize()=="Small") {
