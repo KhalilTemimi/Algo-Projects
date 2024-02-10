@@ -60,6 +60,20 @@ public class PizzaController {
 		}
 	}
 
+	@GetMapping("/pizzas/startOver/{pizzaId}")
+	public String anotherPizza(@ModelAttribute("pizza") Pizza pizza, HttpSession session,
+			Model model, @PathVariable("pizzaId") Long pizzaId) {
+
+		// Route Gard
+		Long userId = (Long) session.getAttribute("userId");
+		if (userId == null) {
+			return "redirect:/";
+		} else {
+			pizzaServ.deletePizza(pizzaId);
+			return "new_pizza.jsp";
+		}
+	}
+
 	@PostMapping("/pizzas")
 	public String create(Model model,@Valid @ModelAttribute("pizza") Pizza pizza, BindingResult result,
 			HttpSession session) {
