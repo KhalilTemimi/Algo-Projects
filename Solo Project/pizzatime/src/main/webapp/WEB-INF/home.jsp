@@ -21,9 +21,9 @@
 			<c:out value="${user.firstName}" />
 			to PIZZA PETE'S
 		</h1>
-		<a href="/logout">LogOut</a> |
 		<a href="/order">Orders (<c:out value="${user.orders.size()}" />)</a> |
-		<a href="/edit">Account</a>
+		<a href="/edit">Account</a> |
+		<a href="/logout">LogOut</a>
 		<div>
 		<br>
 			<div class="row">
