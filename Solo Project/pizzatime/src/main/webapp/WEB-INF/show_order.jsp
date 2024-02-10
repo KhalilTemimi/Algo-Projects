@@ -32,7 +32,7 @@
 						<p class="card-text">Crust:<c:out value="${order.crust}" /></p>
 						<p class="card-text">Topping:<c:out value="${order.topping}" /></p>
 						<h6 class="card-text-right">Price: $<c:out value="${order.price}" /></h6>
-						<a href="/pizzas/new/${order.id}" class="btn btn-danger btn-lg btn-block">Start Over</a> 
+						<a href="/pizzas/startOver/${order.id}" class="btn btn-danger btn-lg btn-block">Start Over</a> 
 						<a href="/purchase/${order.id}" class="btn btn-success btn-lg btn-block">Purchase</a>
 					</div>
 				</div>
