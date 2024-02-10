@@ -16,14 +16,6 @@
 <title>Edit User</title>
 </head>
 <body>
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-	<link rel="stylesheet"
-		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -35,10 +27,10 @@
 		<a href="/order">Orders (<c:out value="${user.orders.size()}" />)</a> |
 		<a href="/edit">Account</a> |
 		<a href="/logout">LogOut</a>
-		<div class="row">
-			<div class="col-sm-6">
-				<h1>Account Info</h1>
-				<form:form action="/users" method="POST" modelAttribute="user">
+			<form:form action="/users" method="POST" modelAttribute="user">
+			<div class="row">
+				<div class="col-sm-6">
+					<h1>Account Info</h1>
 					<input type="hidden" name="_method" value="put">
 					<div class="mb-3">
 						<form:label path="firstName" class="form-label">First Name</form:label>
@@ -70,35 +62,38 @@
 
 					<button type="submit" class="btn btn-primary">update</button>
 
-				</form:form>
-			</div>
-			<div class="col-sm-6">
-				<h1>Past Orders</h1>
-				<ul>
-					<c:forEach var="order" items="${user.pastOrders}">
-						<div class="card" style="width: 18rem;">
-							<div class="card-body">
-								<p class="card-text">
-									<c:out value="${order.createdAt}" />
-								</p>
-								<p class="card-text">
-									<c:out value="${order.size}" />
-									-
-									<c:out value="${order.topping}" /></p>
-								<p class="card-text">$ <c:out value="${order.price}" />
-								</p>
-								<p class="card-text">
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" id="defaultChek1"> 
-									<label class="form-check-label" for="defaultCheck1">Favorite</label>
+				</div>
+				<div class="col-sm-6">
+					<h1>Past Orders</h1>
+					<ul>
+						<c:forEach var="order" items="${user.pastOrders}">
+							<div class="card" style="width: 18rem;">
+								<div class="card-body">
+									<p class="card-text">
+										<c:out value="${order.createdAt}" />
+									</p>
+									<p class="card-text">
+										<c:out value="${order.size}" />
+										-
+										<c:out value="${order.topping}" />
+									</p>
+									<p class="card-text">
+										$
+										<c:out value="${order.price}" />
+									</p>
+									<p class="card-text">
+									<div class="form-check">
+										<input class="form-check-input" type="checkBox" th:field="*${order.favorite}"/>
+										<label class="form-check-label" for="defaultCheckBox">Favorite</label>
+									</div>  
 								</div>
-								</p>
 							</div>
-						</div>
-					</c:forEach>
-				</ul>
+							<br>
+						</c:forEach>
+					</ul>
+				</div>
 			</div>
-		</div>
+		</form:form>
 	</div>
 </body>
 </html>
