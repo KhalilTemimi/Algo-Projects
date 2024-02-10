@@ -18,7 +18,11 @@
 			<c:out value="${user.firstName}" />
 			to PIZZA PETE'S
 		</h1>
-		<a href="/home">Home</a>
+		<a href="/home">Home</a> |
+		<a href="/order">Orders (<c:out value="${user.orders.size()}" />)</a> |
+		<a href="/edit">Account</a> |
+		<a href="/logout">LogOut</a>
+		<h3>Your Orders</h3>
 		<c:forEach var="order" items="${orders}">
 			<!-- 		check if the loggedIn user is the user id of the pizza -->
 			<c:if test="${order.user.id==user.id}">
