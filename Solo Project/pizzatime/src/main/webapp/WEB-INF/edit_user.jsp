@@ -31,7 +31,10 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<div class="container">
 		<h1>Edit User Page</h1>
-		<a href="/home">Home</a>
+		<a href="/home">Home</a> |
+		<a href="/order">Orders (<c:out value="${user.orders.size()}" />)</a> |
+		<a href="/edit">Account</a> |
+		<a href="/logout">LogOut</a>
 		<div class="row">
 			<div class="col-sm-6">
 				<h1>Account Info</h1>
