@@ -108,6 +108,11 @@ public class UserController {
 					loggedInUser.setEmail(user.getEmail());
 					loggedInUser.setPassword(user.getPassword());
 					loggedInUser.setConfirmPassword(user.getConfirmPassword());
+					
+					// update the favorite Pizza from the value in check boxes
+					// code here
+				
+					loggedInUser.setPastOrders(user.getPastOrders());
 					userServ.updateUser(loggedInUser);
 					
 					return "redirect:/home";				
